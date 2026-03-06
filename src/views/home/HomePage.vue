@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import 'primeicons/primeicons.css';
+import ChatComponent from '../../components/VChatAgente.vue'
 
 // --- Estado Reactivo para el Formulario ---
 const form = ref({
@@ -237,6 +238,8 @@ const socialIcons = [
         © 2024 MediCar Seguros Generales S.A. Todos los derechos reservados.
       </div>
     </footer>
+    <ChatComponent class="fixed bottom-6 right-6 z-50" />
+
   </div>
 </template>
 
