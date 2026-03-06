@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 import 'primeicons/primeicons.css';
 
@@ -80,7 +80,7 @@ const socialIcons = [
                   <div class="relative">
                     <i class="pi pi-car absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input 
-                      v-model="form.placa"
+                      v-model="form.placas"
                       class="w-full text-white pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-[#1152d4] text-slate-900 " 
                       placeholder="ABC-123" 
                       type="text"

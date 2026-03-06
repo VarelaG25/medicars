@@ -1,17 +1,22 @@
-// src/router/index.ts
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-// Rutas de la app
+// IMPORTACIÓN ESTÁTICA (Elimina el lazy loading que está fallando)
+import HomePage from '@/views/home/HomePage.vue'
+import LoginPage from '@/views/login/LoginPage.vue'
+import RegisterPage from '@/views/register/RegisterPage.vue'
+import SinistersPage from '@/views/sinisters/SinistersPage.vue'
+import TrackingPage from '@/views/tracking/TrackingPage.vue'
+
 const routes = [
-  { path: '/', component: () => import('@/views/home/HomePage.vue') },
-  { path: '/login', component: () => import('@/views/login/LoginPage.vue') },
-  { path: '/register', component: () => import('@/views/register/RegisterPage.vue') },
-  { path: '/sinisters', component: () => import('@/views/sinisters/SinistersPage.vue') },
-  { path: '/reports', component: () => import('@/views/tracking/TrackingPage.vue') },
+  { path: '/', component: HomePage },
+  { path: '/login', component: LoginPage },
+  { path: '/register', component: RegisterPage },
+  { path: '/sinisters', component: SinistersPage },
+  { path: '/reports', component: TrackingPage },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory('/medicars/'), 
+  history: createWebHashHistory('/medicars/'), // Asegura la base aquí también
   routes,
 })
 

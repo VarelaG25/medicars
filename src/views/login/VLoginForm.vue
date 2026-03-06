@@ -1,13 +1,9 @@
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 const email = ref('')
 const password = ref('')
 
-const navigate = () => {
-  console.log('Navegando a la página de registro')
-  location.href = '#/register'
-}
 </script>
 
 <template>
