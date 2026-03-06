@@ -1,0 +1,102 @@
+<script setup>
+import { ref } from 'vue'
+
+const isOpen = ref(false)
+const message = ref('')
+const messages = ref([
+  { from: 'agent', text: 'Hola 👋 soy soporte MediCar. ¿En qué puedo ayudarte?' },
+  { from: 'user', text: 'Necesito ayuda con mi póliza.' }
+])
+
+const toggleChat = () => {
+  isOpen.value = !isOpen.value
+}
+
+const sendMessage = () => {
+  if (!message.value) return
+
+  messages.value.push({
+    from: 'user',
+    text: message.value
+  })
+
+  message.value = ''
+}
+</script>
+
+<template>
+  <div class="fixed bottom-6 right-6 z-50">
+
+    <!-- BOTÓN CHAT -->
+    <button
+      v-if="!isOpen"
+      @click="toggleChat"
+      class="w-14 h-14 rounded-full bg-[#1152d4] text-white shadow-xl flex items-center justify-center hover:scale-110 transition"
+    >
+      <i class="pi pi-comments text-xl"></i>
+    </button>
+
+    <!-- VENTANA CHAT -->
+    <div
+      v-if="isOpen"
+      class="w-80 h-96 bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden"
+    >
+
+      <!-- HEADER -->
+      <div class="bg-[#1152d4] text-white p-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#1152d4] font-bold">
+            M
+          </div>
+          <div>
+            <p class="text-sm font-bold">Soporte MediCar</p>
+            <p class="text-xs opacity-80">Agente en línea</p>
+          </div>
+        </div>
+
+        <button @click="toggleChat">
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+
+      <!-- MENSAJES -->
+      <div class="flex-1 p-3 overflow-y-auto flex flex-col gap-2 bg-gray-50">
+
+        <div
+          v-for="(msg, index) in messages"
+          :key="index"
+          :class="[
+            'px-3 py-2 rounded-lg max-w-[70%] text-sm',
+            msg.from === 'user'
+              ? 'bg-[#1152d4] text-white self-end'
+              : 'bg-gray-200 text-gray-800 self-start'
+          ]"
+        >
+          {{ msg.text }}
+        </div>
+
+      </div>
+
+      <!-- INPUT -->
+      <div class="p-3 border-t flex gap-2">
+
+        <input
+          v-model="message"
+          @keyup.enter="sendMessage"
+          placeholder="Escribe un mensaje..."
+          class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1152d4]"
+        />
+
+        <button
+          @click="sendMessage"
+          class="bg-[#1152d4] text-white px-3 rounded-lg hover:bg-[#0e45b8]"
+        >
+          <i class="pi pi-send"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</template>
