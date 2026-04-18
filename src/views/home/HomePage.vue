@@ -1,7 +1,7 @@
-<script lang="ts" setup>
+<script setup>
 import { ref } from 'vue';
 import 'primeicons/primeicons.css';
-
+import UserProfile from '@/components/UserProfile.vue' 
 // --- Estado Reactivo para el Formulario ---
 const form = ref({
   poliza: '',
@@ -58,6 +58,34 @@ const socialIcons = [
 
 <template>
   <div class="min-h-screen text-slate-900 font-sans">
+
+        <!-- ===== HEADER CON PERFIL ===== -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+      <div class="max-w-[1280px] mx-auto px-6 md:px-20 py-4 flex items-center justify-between">
+    <!-- Logo y navegación -->
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-2">
+            <div class="size-6">
+              <svg fill="currentColor" viewBox="0 0 48 48" class="text-[#1152d4]">
+                <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"></path>
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-slate-800">MediCar</span>
+          </div>
+          
+          <nav class="hidden md:flex items-center gap-6">
+            <a href="#" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Inicio</a>
+            <a href="#" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Siniestros</a>
+            <a href="#" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Seguimiento</a>
+          </nav>
+        </div>
+        
+        <!-- Botón de Perfil -->
+        <UserProfile />
+        
+      </div>
+    </header>
+
     <main>
       <section class="max-w-[1280px] mx-auto px-6 md:px-20 pt-8 pb-12 md:pt-12 md:pb-20">
         
@@ -80,7 +108,7 @@ const socialIcons = [
                   <div class="relative">
                     <i class="pi pi-car absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input 
-                      v-model="form.placas"
+                      v-model="form.placa"
                       class="w-full text-white pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-[#1152d4] text-slate-900 " 
                       placeholder="ABC-123" 
                       type="text"
